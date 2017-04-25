@@ -1,14 +1,11 @@
 {
-    "name": "woothemes/woocommerce-api",
-    "description": "A client library for the WooCommerce REST API",
+    "name": "momentussoftware/woocommerce-api",
+    "description": "Fork of a client library for the WooCommerce REST API",
     "license": "GPL v3",
     "authors": [
         {
-            "name": "Max Rice",
-            "email": "max@maxrice.com"
-        },
-        {
-            "name": "Gerhard Potgieter"
+            "name": "Darren Osadchuk",
+            "email": "darren@momentussoftware.com"
         }
     ],
     "autoload": {
