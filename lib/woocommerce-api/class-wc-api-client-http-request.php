@@ -232,9 +232,24 @@ class WC_API_Client_HTTP_Request {
 
 		$json = substr( $raw_body, $json_start, ( $json_end - $json_start ) );
 
-		return json_decode( $json, $this->json_decode_as_array );
+		$array = json_decode( $json, $this->json_decode_as_array );
+		return $this->get_extended_response($array);
 	}
 
+	/**
+	 * Adds the response headers to the response
+	 *
+	 * Useful for pagination since the total number of resources and pages are always included
+	 * in the X-WC-Total and X-WC-TotalPages HTTP headers.
+	 *
+	 * @param object|array $response
+	 * @return mixed
+	 */
+	protected function get_extended_response( $response ) {
+		$response->total = intval( trim( $this->response->headers['X-WC-Total'] ) );
+		$response->total_pages = intval( trim( $this->response->headers['X-WC-TotalPages'] ) );
+		return $response;
+	}
 
 	/**
 	 * Build the result object/array
